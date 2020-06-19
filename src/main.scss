@@ -1,0 +1,22 @@
+$primary: yellow;
+$danger: purple;
+@import "~bootstrap/scss/bootstrap";
+body {
+  background-color: red;
+  //background-image: url("./assets/webpack.svg") no-repeat;
+}
+.test {
+  height: 50px;
+  width: 50px;
+  //background-image: url("./assets/images/webpack.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+//@import "~bootstrap/scss/normalize";
+@import "styles/test";
+@import "styles/base/variables";
+@import "styles/base/mixins";
+@import "styles/base/global";
+
+@import "styles/components/button";

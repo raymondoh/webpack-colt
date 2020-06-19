@@ -1,0 +1,34 @@
+// to use mixin: @include clearfix
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// MEDIA QUERY MANAGER
+//Grid & responsive
+$breakpoint: (
+    small: 630px,
+    medium: 800px,
+    large: 1200px
+);
+
+// Media queries
+@mixin small {
+    @media only screen and (min-width: map-get($map: $breakpoint, $key: small)) {
+        @content;
+    }
+}
+@mixin medium {
+    @media only screen and (min-width: map-get($map: $breakpoint, $key: medium)) {
+        @content;
+    }
+}
+@mixin large {
+    @media only screen and (min-width: map-get($map: $breakpoint, $key: large)) {
+        @content;
+    }
+}
+
