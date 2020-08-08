@@ -8,18 +8,18 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CssUrlRelativePlugin = require("css-url-relative-plugin");
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+//const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = merge(common, {
   mode: "production",
 
   output: {
     filename: "js/[name].[contenthash].bundle.js", // up to us
-    path: path.resolve(__dirname, "dist") // up to us
+    path: path.resolve(__dirname, "dist"), // up to us
   },
   optimization: {
     splitChunks: {
-      chunks: "initial"
+      chunks: "initial",
     },
     minimizer: [
       new OptimizeCssAssetsPlugin(),
@@ -30,18 +30,18 @@ module.exports = merge(common, {
         minify: {
           removeAttributeQuotes: true,
           collapseWhitespace: true,
-          removeComments: true
-        }
-      })
-    ]
+          removeComments: true,
+        },
+      }),
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new CssUrlRelativePlugin(),
     new MiniCssExtractPlugin({
       //filename: "styles/[name].[contentHash].css"
-      filename: "styles/[name].[chunkhash].css"
-    })
+      filename: "styles/[name].[chunkhash].css",
+    }),
     //new FaviconsWebpackPlugin("./src/images/icons/favicon.png"),
     // new FaviconsWebpackPlugin({
     //   logo: "./src/images/icons/favicon.png",
@@ -73,8 +73,8 @@ module.exports = merge(common, {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+        },
       },
       {
         test: /\.scss$/,
@@ -82,11 +82,11 @@ module.exports = merge(common, {
           MiniCssExtractPlugin.loader, // 3. extract css into files from js
           "css-loader", // 2. turns css into common js
           "postcss-loader",
-          "sass-loader" // 1.turns sass into css
-        ]
-      }
-    ]
-  }
+          "sass-loader", // 1.turns sass into css
+        ],
+      },
+    ],
+  },
 });
 
 // // Favicon
